@@ -46,9 +46,10 @@ public class DatePickerModule extends ReactContextBaseJavaModule {
         String title = props.getString("title");
         String confirmText = props.getString("confirmText");
         final String cancelText = props.getString("cancelText");
+        String themeMode = props.getString("theme");
         final View pickerWithMargin = withTopMargin(picker);
 
-        return new AlertDialog.Builder(DatePickerPackage.context.getCurrentActivity())
+        return new AlertDialog.Builder(DatePickerPackage.context.getCurrentActivity(), themeMode.equalsIgnoreCase("light") || themeMode.equalsIgnoreCase("auto") ? android.R.style.Theme_DeviceDefault_Light_Dialog_Alert : android.R.style.Theme_DeviceDefault_Dialog_Alert)
                 .setTitle(title)
                 .setCancelable(true)
                 .setView(pickerWithMargin)
